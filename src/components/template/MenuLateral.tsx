@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "./Logo";
-import { IconeAjustes, IconeCasa, IconeSino, IconeLogout } from "../../icons";
+import { IconeAjustes, IconeCasa, IconeSino, IconeLogout } from "../icons";
 import MenuItem from "./MenuItem";
 
 export default function MenuLateral() {
