@@ -42,8 +42,14 @@ export const IconeLogout = (
   </svg>
 );
 
-export const IconeSol = (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+export const IconeSol = (tamanho = 6) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={`w-${tamanho} h-${tamanho}`}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -53,8 +59,14 @@ export const IconeSol = (
   </svg>
 );
 
-export const IconeLua = (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+export const IconeLua = (tamanho = 6) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={`w-${tamanho} h-${tamanho}`}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
