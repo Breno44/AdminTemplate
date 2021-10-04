@@ -2,8 +2,11 @@ import React from "react";
 import Logo from "./Logo";
 import { IconeAjustes, IconeCasa, IconeSino, IconeLogout } from "../icons";
 import MenuItem from "./MenuItem";
+import useAuth from "../../data/hook/useAuth";
 
 export default function MenuLateral() {
+  const { logout } = useAuth();
+
   return (
     <aside className="flex flex-col bg-gray-200 text-gray-700 dark:bg-gray-900">
       <div
@@ -20,7 +23,7 @@ export default function MenuLateral() {
         <MenuItem
           texto="Sair"
           icone={IconeLogout}
-          onClick={() => alert("você saiu")}
+          onClick={logout}
           className={`text-red-600 hover:text-red-400 hover:bg-red-400 hover:text-white dark:hover:text-white`}
         />
       </ul>
