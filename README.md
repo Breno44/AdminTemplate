@@ -1,5 +1,5 @@
 <h1 align="center">
-  Quiz
+  Admin Template
 </h1>
 
 <br>
