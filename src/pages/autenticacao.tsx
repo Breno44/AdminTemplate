@@ -1,15 +1,26 @@
 import { useState } from "react";
 import AuthInput from "../components/auth/AuthInput";
+import { IconeExclamation } from "../components/icons";
 
 export default function Autenticacao() {
+  const [error, setError] = useState(null);
   const [modo, setModo] = useState<"login" | "cadastro">("login");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
+  function exibirError(msg, tempoEmSegundos = 5) {
+    setError(msg);
+    setTimeout(() => setError(null), tempoEmSegundos * 1000);
+  }
+
   function submeter() {
     if (modo === "login") {
-      alert("login");
-    } else alert("cadastro");
+      console.log("login");
+      exibirError("Ocorreu um erro no login!");
+    } else {
+      exibirError("Ocorreu um erro no cadastro!");
+      console.log("cadastro");
+    }
   }
 
   return (
@@ -25,6 +36,16 @@ export default function Autenticacao() {
         <h1 className={`text-3xl font-bold mb-5`}>
           {modo === "login" ? "Entre com a sua conta" : "Cadastre-se na plataforma"}
         </h1>
+
+        {error ? (
+          <div className="flex items-center bg-red-400 text-white py-3 px-5 my-2 border border-red-700 rounded-lg">
+            {IconeExclamation(6)}
+            <span className="ml-3 text-sm">{error}</span>
+          </div>
+        ) : (
+          false
+        )}
+
         <AuthInput tipo="email" label="E-mail" valor={email} valorMudou={setEmail} obrigatorio />
         <AuthInput tipo="password" label="Senha" valor={senha} valorMudou={setSenha} obrigatorio />
         <button
