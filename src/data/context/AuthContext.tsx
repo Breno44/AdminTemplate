@@ -8,6 +8,8 @@ interface AuthContextProps {
   usuario?: Usuario;
   carregando?: boolean;
   loginGoogle?: () => Promise<void>;
+  cadastrar?: (email: string, senha: string) => Promise<void>;
+  login?: (email: string, senha: string) => Promise<void>;
   logout?: () => Promise<void>;
 }
 
@@ -59,7 +61,31 @@ export function AuthProvider(props) {
       setCarregando(true);
       const resp = await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
-      configurarSessao(resp.user);
+      await configurarSessao(resp.user);
+      route.push("/");
+    } finally {
+      setCarregando(false);
+    }
+  }
+
+  async function login(email, password) {
+    try {
+      setCarregando(true);
+      const resp = await firebase.auth().signInWithEmailAndPassword(email, password);
+
+      await configurarSessao(resp.user);
+      route.push("/");
+    } finally {
+      setCarregando(false);
+    }
+  }
+
+  async function cadastrar(email, password) {
+    try {
+      setCarregando(true);
+      const resp = await firebase.auth().createUserWithEmailAndPassword(email, password);
+
+      await configurarSessao(resp.user);
       route.push("/");
     } finally {
       setCarregando(false);
@@ -85,7 +111,9 @@ export function AuthProvider(props) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ usuario, carregando, loginGoogle, logout }}>{props.children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ usuario, carregando, loginGoogle, login, cadastrar, logout }}>
+      {props.children}
+    </AuthContext.Provider>
   );
 }
 
